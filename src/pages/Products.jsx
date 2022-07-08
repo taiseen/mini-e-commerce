@@ -2,30 +2,43 @@ import { useSearchParams } from 'react-router-dom'
 import { Item, Spinner } from './../components';
 import { useEffect, useState } from 'react'
 import FakeStoreApi from './../api/fakeStoreApi';
+import { useProductContext } from '../context/ProductContext';
 
 
 const Products = () => {
 
-  const [query, setQuery] = useSearchParams();
-  const [loading, setLoading] = useState(true);
-  const [allProducts, setAllProducts] = useState([]);
-  const searchQuery = query.get('search');
+  // const [query, setQuery] = useSearchParams();
+  // const [loading, setLoading] = useState(true);
+  // const [allProducts, setAllProducts] = useState([]);
+  // const searchQuery = query.get('search');
 
 
-  useEffect(() => {
+  // useEffect(() => {
 
-    const fetchProducts = async () => {
-      setLoading(true);
-      const products = searchQuery
-        ? await FakeStoreApi.fetchProductBySearch(searchQuery)
-        : await FakeStoreApi.fetchAllProduct()
-      setAllProducts(products);
-      setLoading(false);
-    }
+  //   const fetchProducts = async () => {
+  //     setLoading(true);
 
-    fetchProducts().catch(console.error);
-  }, [searchQuery]);
+  //     const allLocalStorageProduct = JSON.parse(localStorage.getItem('allProducts'));
 
+  //     if (allLocalStorageProduct) {
+  //       setAllProducts(allLocalStorageProduct);
+  //     } else {
+  //       const products = searchQuery
+  //         ? await FakeStoreApi.fetchProductBySearch(searchQuery)
+  //         : await FakeStoreApi.fetchAllProduct()
+
+  //       setAllProducts(products);
+  //       localStorage.setItem('allProducts', JSON.stringify(products))
+  //     }
+
+  //     setLoading(false);
+  //   }
+
+  //   fetchProducts().catch(console.error);
+  // }, [searchQuery]);
+
+  
+  const { loading, searchQuery, allProducts } = useProductContext();
 
 
   // If no search 🔎 result found...

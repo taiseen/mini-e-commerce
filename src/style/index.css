@@ -5,8 +5,8 @@
 
 /* Custom Spinner  */
 .loader {
-    @apply border-gray-200 rounded-full border-4 ease-linear h-12 w-12;
-    border-top-color: #267ce4;
+    @apply border-gray-300 rounded-full border-4 ease-linear h-12 w-12;
+    border-top-color: #0073ff;
     animation       : spinner 1.2s linear infinite;
 }
 
