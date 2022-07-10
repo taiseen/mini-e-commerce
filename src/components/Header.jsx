@@ -27,7 +27,7 @@ const Header = ({ onSearch, cartItemCount = 0 }) => {
   // }
 
 
-
+  // fixed top-0 right-0 left-0 z-10
   return (
     <header className='p-5 md:px-14 lg:px-24 bg-blue-400 flex flex-col gap-5 sm:flex-row flex-wrap justify-between items-center'>
 

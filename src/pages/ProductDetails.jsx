@@ -1,8 +1,8 @@
+import { useProductContext } from '../context/ProductContext';
 import { Link, useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { Item, Spinner } from '../components';
 import FakeStoreApi from '../api/fakeStoreApi';
-import { useProductContext } from '../context/ProductContext';
 
 
 const ProductDetails = () => {
@@ -10,10 +10,8 @@ const ProductDetails = () => {
   const { id } = useParams();
   const [loading, setLoading] = useState(true);
   const [productInfo, setProductInfo] = useState({});
-  const { allProducts } = useProductContext();
+  const { allProducts, addToCart } = useProductContext();
 
-
-  console.log(productInfo);
 
   useEffect(() => {
 
@@ -53,7 +51,9 @@ const ProductDetails = () => {
 
 
 
-  if (loading) return <Spinner />
+  // if (loading) return <Spinner />
+  if (loading) return  <div className='h-[90vh] pt-24'> <Spinner /> </div> 
+
 
 
   return (
@@ -77,7 +77,10 @@ const ProductDetails = () => {
           <div className='flex items-center w-full  justify-between'>
             <span className='text-blue-700 text-xl font-bold'>${productInfo?.price}</span>
 
-            <img src="/cart.svg" alt="cart" className='w-10 h-10 bg-gray-200 rounded-lg p-2 border hover:border-blue-500 duration-200 cursor-pointer' />
+            <img src="/cart.svg" alt="cart" 
+            className='w-10 h-10 bg-gray-200 rounded-lg p-2 border hover:border-blue-500 duration-200 cursor-pointer' 
+            onClick={() => addToCart(productInfo)}
+            />
           </div>
 
 
@@ -88,7 +91,7 @@ const ProductDetails = () => {
       <h2 className='bg-red-300 text-gray-800 p-4 mx-auto mt-12 w-[220px] text-center text-2xl rounded-md shadow-lg'>Same Category</h2>
 
 
-      <div className='mx-auto mt-12 w-3/4 flex items-center justify-center flex-wrap gap-4'>
+      <div className='mx-auto my-12 w-3/4 flex items-center justify-center flex-wrap gap-4'>
 
         {
           allProducts.filter(item => item.category === productInfo.category).map(product =>
@@ -96,7 +99,7 @@ const ProductDetails = () => {
             <Item
               data={product}
               key={product.id}
-              addToCart={() => { }} />
+              addToCart={addToCart} />
           )
         }
 

@@ -3,6 +3,11 @@
 @tailwind utilities;
 
 
+.quantityBtn {
+    @apply w-8 h-8 border border-gray-600 font-bold grid place-items-center cursor-pointer hover:bg-gray-300 duration-200;
+}
+
+
 /* Custom Spinner  */
 .loader {
     @apply border-gray-300 rounded-full border-4 ease-linear h-12 w-12;

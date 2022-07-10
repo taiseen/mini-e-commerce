@@ -17,12 +17,15 @@ const ProductContext = createContext(initialState);
 
 export const AllProducts = ({ children }) => {
 
-    const [query, setQuery] = useSearchParams();
+    const [query] = useSearchParams();
     const [loading, setLoading] = useState(true);
     const [allProducts, setAllProducts] = useState([]);
     const searchQuery = query.get('search');
 
-    const [cart, setCart] = useState(initialState.cart);
+
+    const [cart, setCart] = useState(initialState.cart); 
+
+    console.log(cart);
 
     const cartItemCount = () => cart.reduce((acc, item) => acc + item.quantity, 0);
     
@@ -37,9 +40,9 @@ export const AllProducts = ({ children }) => {
         }
     }
 
-    const removeFromCart = (id) => setCart(pre => pre.filter(item => item.id !== id))
-    
 
+    const removeFromCart = (id) => setCart(pre => pre.filter(item => item.product.id !== id))
+    
 
     const increaseQuantity = (id) => {
 
@@ -98,7 +101,13 @@ export const AllProducts = ({ children }) => {
         <ProductContext.Provider value={{
             loading,
             searchQuery,
-            allProducts
+            allProducts,
+            cart,
+            addToCart,
+            cartItemCount,
+            removeFromCart,
+            increaseQuantity,
+            decreaseQuantity,
         }}>
             {
                 children

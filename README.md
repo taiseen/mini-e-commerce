@@ -1,6 +1,6 @@
 > 29 - Jun - 2022
 
-## Mini E-commerce | [Live Link](www)
+## Mini E-commerce | [Live Link](https://mini-e-com.netlify.app)
 
 # React + TailwindCSS
 

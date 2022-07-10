@@ -1,44 +1,11 @@
-import { useSearchParams } from 'react-router-dom'
-import { Item, Spinner } from './../components';
-import { useEffect, useState } from 'react'
-import FakeStoreApi from './../api/fakeStoreApi';
 import { useProductContext } from '../context/ProductContext';
+import { Item, Spinner } from './../components';
 
 
 const Products = () => {
 
-  // const [query, setQuery] = useSearchParams();
-  // const [loading, setLoading] = useState(true);
-  // const [allProducts, setAllProducts] = useState([]);
-  // const searchQuery = query.get('search');
 
-
-  // useEffect(() => {
-
-  //   const fetchProducts = async () => {
-  //     setLoading(true);
-
-  //     const allLocalStorageProduct = JSON.parse(localStorage.getItem('allProducts'));
-
-  //     if (allLocalStorageProduct) {
-  //       setAllProducts(allLocalStorageProduct);
-  //     } else {
-  //       const products = searchQuery
-  //         ? await FakeStoreApi.fetchProductBySearch(searchQuery)
-  //         : await FakeStoreApi.fetchAllProduct()
-
-  //       setAllProducts(products);
-  //       localStorage.setItem('allProducts', JSON.stringify(products))
-  //     }
-
-  //     setLoading(false);
-  //   }
-
-  //   fetchProducts().catch(console.error);
-  // }, [searchQuery]);
-
-  
-  const { loading, searchQuery, allProducts } = useProductContext();
+  const { loading, searchQuery, allProducts, addToCart } = useProductContext();
 
 
   // If no search 🔎 result found...
@@ -52,9 +19,11 @@ const Products = () => {
   }
 
 
-  if (loading) return <Spinner />
+
+  if (loading) return  <div className='min-h-screen'> <Spinner /> </div> 
 
 
+  
   return (
     <section className='p-4 md:p-8 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 place-items-center'>
       {
@@ -62,7 +31,7 @@ const Products = () => {
           <Item
             data={data}
             key={data.id}
-            addToCart={() => { }}
+            addToCart={addToCart}
           />
         )
       }

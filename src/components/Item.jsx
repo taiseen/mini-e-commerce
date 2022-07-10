@@ -1,5 +1,5 @@
-import React from 'react'
 import { Link } from 'react-router-dom';
+
 
 const Item = ({ data, addToCart }) => {
 
@@ -24,7 +24,7 @@ const Item = ({ data, addToCart }) => {
             <div className='absolute bottom-3 flex gap-4 items-center justify-between  w-[95%] px-4'>
                 <span className='text-xl font-bold'>${price}</span>
                 <div className='w-10 h-10 bg-gray-200 rounded-lg p-2 border hover:border-blue-500 duration-200 cursor-pointer'
-                    onClick={() => addToCart(id)}>
+                    onClick={() => addToCart(data)}>
                     <img src="/cart.svg" alt="" />
                 </div>
             </div>
